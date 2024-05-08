@@ -1,16 +1,37 @@
 # lokaverk
 
-A new Flutter project.
+Lokaverkefnið mitt í NTV
 
-## Getting Started
+## Það sem appið á að gera
 
-This project is a starting point for a Flutter application.
+Teningakast app sem gerir mun meira
 
-A few resources to get you started if this is your first Flutter project:
+Það sem þarf að gera:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Kasta tveimur teningum (og kasta svo tvo auka ef ákveðnar tölur eru rúllaðar)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Skrá Vitni sem eru í deildum (gera flott interface)
+
+Skrá sá sem kastaði 
+
+Geta editað hvað var rúllað (ef teningur lendir á 3, þá á að vera hægt að breyta)
+
+Vista svo allar upplýsingar og gefa út samantekt t.d.
+
+„Rúllað var: 7 (Hagkaup)
+Gulur: 3
+Rauður: 4
+Kastarinn var: Federica
+Vitni fyrir hverja skrifstofu:
+Bakendastofa -  Arnar, Þröstur og Engilbert
+Framendastofa - Grímur
+Kassastofa - Tómas og Þór
+Söludeild - Sara og Federica
+Stigastaða er:  14 stig“
+
+Svo þarft að geta skoðað eldri köst
+
+og einnig fengið með einu click samantektina í clipboard þannig það sé hægt að deila snögglega annarstaðar
+
+
+
