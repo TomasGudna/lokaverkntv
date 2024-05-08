@@ -18,16 +18,25 @@ Geta editað hvað var rúllað (ef teningur lendir á 3, þá á að vera hægt
 
 Vista svo allar upplýsingar og gefa út samantekt t.d.
 
-„Rúllað var: 7 (Hagkaup)
+Rúllað var: 7 (Hagkaup)
+
 Gulur: 3
+
 Rauður: 4
+
 Kastarinn var: Federica
+
 Vitni fyrir hverja skrifstofu:
+
 Bakendastofa -  Arnar, Þröstur og Engilbert
+
 Framendastofa - Grímur
+
 Kassastofa - Tómas og Þór
+
 Söludeild - Sara og Federica
-Stigastaða er:  14 stig“
+
+
 
 Svo þarft að geta skoðað eldri köst
 
@@ -35,3 +44,4 @@ og einnig fengið með einu click samantektina í clipboard þannig það sé h�
 
 
 
+![teningakastið](https://github.com/TomasGudna/lokaverkntv/assets/98809616/10808c79-a229-4e6c-b433-807e13e39280)
