@@ -1,39 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:lokaverk/Vitni.dart';
 
 import 'dice_roller.dart';
 // import 'package:vonandi/flotturTexti.dart';
 
-const flottAlignment = Alignment.topRight;
-const flottEndAlignment = Alignment.bottomLeft;
+
 
 class GradientContainerRGBY extends StatelessWidget {
   const GradientContainerRGBY(
-      this.color1, this.color2, this.color3, this.color4,
+      this.color1, this.color2, this.color3,
       {super.key});
 
   const GradientContainerRGBY.litir({super.key})
-      : color1 = Colors.red,
-        color2 = Colors.yellow,
-        color3 = Colors.blueAccent,
-        color4 = Colors.green;
+      : color1 = Colors.blue,
+        color2 = Colors.orangeAccent,
+        color3 = Colors.orange;
+
 
   final Color color1;
   final Color color2;
   final Color color3;
-  final Color color4;
+
 
   @override
   Widget build(context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color1, color2, color3, color4],
-          begin: flottAlignment,
-          end: flottEndAlignment,
+          colors: [color1, color2, color3 ],
+          begin: Alignment.center,
+          end: Alignment.bottomCenter,
         ),
       ),
-      child: Center(
-        child: DiceRoller(),
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+
+          DiceRoller(), // Add DiceRoller widget
+
+        ],
       ),
     );
   }

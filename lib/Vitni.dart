@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
 
-class MyPage extends StatefulWidget {
+class Vitni extends StatefulWidget {
   @override
-  _MyPageState createState() => _MyPageState();
+  _Vitni createState() => _Vitni();
 }
 
-class _MyPageState extends State<MaterialApp> {
+class _Vitni extends State<Vitni> {
   String selectedButton = '';
   List<bool> selectedOptions = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Button Grid'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +26,6 @@ class _MyPageState extends State<MaterialApp> {
                   onPressed: () {
                     setState(() {
                       selectedButton = 'Framendi';
-                      selectedOptions = List<bool>.filled(3, false);
                     });
                     _showOptions(context);
                   },
@@ -76,40 +72,57 @@ class _MyPageState extends State<MaterialApp> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Options for $selectedButton'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (var i = 0; i < 3; i++)
-                CheckboxListTile(
-                  title: Text(buttonOptions[selectedButton]![i]),
-                  value: selectedOptions[i],
-                  onChanged: (value) {
-                    setState(() {
-                      selectedOptions[i] = value!;
-                    });
+        List<String> options = buttonOptions[selectedButton] ?? [];
+        List<bool> selectedOptions = List<bool>.filled(options.length, false);
+
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              title: Text('Vitni úr $selectedButton'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (var i = 0; i < options.length; i++)
+                    CheckboxListTile(
+                      title: Text(options[i]),
+                      value: selectedOptions[i],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedOptions[i] = value!;
+                        });
+                      },
+                    )
+                ],
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Vista'),
+                  onPressed: () {
+                    //Bæta við til að vista
                   },
                 ),
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+                TextButton(
+                  child: Text('Hætta við'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
         );
       },
     );
   }
 
   final Map<String, List<String>> buttonOptions = {
-    'Framendi': ['Arnar', 'Þröstur', 'Engilbert'],
+    'Framendi': [
+      'Arnar',
+      'Þröstur',
+      'Engilbert',
+    ],
     'Bakendi': ['Grímur', 'Marzúk', 'Fannar'],
-    'Kassadeild': ['Tómas', 'Þór', 'Kormákur'],
+    'Kassadeild': ['Tómas', 'Þór', 'Kormákur', 'Sveinn'],
     'Söludeild': ['Sara', 'Federica', 'Gunnar'],
   };
 }
@@ -123,7 +136,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.all(34.0),
       child: SizedBox(
         width: 50, // Adjust the width as needed
         height: 50, // Adjust the height as needed
