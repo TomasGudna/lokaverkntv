@@ -43,9 +43,10 @@ class _DiceRollerState extends State<DiceRoller> {
                           currentDiceRoll = (currentDiceRoll + 1).clamp(1, 6);
                         });
                       },
-                      icon: const Icon(Icons.arrow_drop_up,
-                          color: Colors.white60,
-                          size: 40,
+                      icon: const Icon(
+                        Icons.arrow_drop_up,
+                        color: Colors.white60,
+                        size: 40,
                       ),
                     ),
                     Text(
@@ -61,9 +62,10 @@ class _DiceRollerState extends State<DiceRoller> {
                           currentDiceRoll = (currentDiceRoll - 1).clamp(1, 6);
                         });
                       },
-                      icon: const Icon(Icons.arrow_drop_down,
-                          color: Colors.white60,
-                          size: 40,
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.white60,
+                        size: 40,
                       ),
                     ),
                   ],
@@ -87,9 +89,10 @@ class _DiceRollerState extends State<DiceRoller> {
                           currentDiceRoll2 = (currentDiceRoll2 + 1).clamp(1, 6);
                         });
                       },
-                      icon: const Icon(Icons.arrow_drop_up,
-                          color: Colors.white60,
-                          size: 40,
+                      icon: const Icon(
+                        Icons.arrow_drop_up,
+                        color: Colors.white60,
+                        size: 40,
                       ),
                     ),
                     Text(
@@ -105,9 +108,10 @@ class _DiceRollerState extends State<DiceRoller> {
                           currentDiceRoll2 = (currentDiceRoll2 - 1).clamp(1, 6);
                         });
                       },
-                      icon: const Icon(Icons.arrow_drop_down,
-                          color: Colors.white60,
-                          size: 40,
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.white60,
+                        size: 40,
                       ),
                     ),
                   ],
@@ -120,12 +124,19 @@ class _DiceRollerState extends State<DiceRoller> {
         TextButton(
           onPressed: rollDice,
           style: TextButton.styleFrom(
-            foregroundColor: Colors.white60,
-            textStyle: const TextStyle(
-              fontSize: 30,
-            ),
+              foregroundColor: Colors.white60,
+              textStyle: const TextStyle(
+                fontSize: 25,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40),
+                side: const BorderSide(color: Colors.white60),
+              ),
+              backgroundColor: Colors.white60),
+          child: const Text(
+            "Kasta",
+            style: TextStyle(color: Colors.black),
           ),
-          child: const Text("Kasta"),
         ),
       ],
     );
