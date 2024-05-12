@@ -32,17 +32,22 @@ class GradientContainerRGBY extends StatelessWidget {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-
-          DiceRoller(), // Add DiceRoller widget
-
-        ],
+      child: Column(
+      children: [
+        Expanded(
+            child: DiceRoller(),
+          ),
+        Expanded(
+            child: Vitni(),
+        ),
+      ],
       ),
     );
   }
 }
+
+
+
 
 /*
 class GradientContainerRGBY extends StatelessWidget {

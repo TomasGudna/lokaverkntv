@@ -72,6 +72,18 @@ flutter:
     - assets/images/reddice-4.png
     - assets/images/reddice-5.png
     - assets/images/reddice-6.png
+    - assets/images/bluedice-1.png
+    - assets/images/bluedice-2.png
+    - assets/images/bluedice-3.png
+    - assets/images/bluedice-4.png
+    - assets/images/bluedice-5.png
+    - assets/images/bluedice-6.png
+    - assets/images/greendice-1.png
+    - assets/images/greendice-2.png
+    - assets/images/greendice-3.png
+    - assets/images/greendice-4.png
+    - assets/images/greendice-5.png
+    - assets/images/greendice-6.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
