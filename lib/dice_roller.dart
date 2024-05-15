@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:lokaverk/Vitni.dart';
+import 'nidurstodur.dart';
 
 final randomizer = Random();
 
@@ -12,20 +12,24 @@ class DiceRoller extends StatefulWidget {
 }
 
 class _DiceRollerState extends State<DiceRoller> {
-  var currentDiceRoll = 1;
-  var currentDiceRoll2 = 1;
+  var yellowDiceRoll = 1;
+  var redDiceRoll = 1;
+  var bluedice = 1;
+  var greendice = 1;
 
   void rollDice() {
     setState(() {
-      currentDiceRoll = randomizer.nextInt(6) + 1;
-      currentDiceRoll2 = randomizer.nextInt(6) + 1;
+      yellowDiceRoll = randomizer.nextInt(6) + 1;
+      redDiceRoll = randomizer.nextInt(6) + 1;
+      bluedice = randomizer.nextInt(6) + 1;
+      greendice = randomizer.nextInt(6) + 1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(40),
+      margin: const EdgeInsets.all(10),
       child: Column(
         children: [
           Row(
@@ -34,7 +38,7 @@ class _DiceRollerState extends State<DiceRoller> {
               Column(
                 children: [
                   Image.asset(
-                    "assets/images/dice-$currentDiceRoll.png",
+                    "assets/images/yellowDiceRoll-$yellowDiceRoll.png",
                     width: 120,
                   ),
                   Row(
@@ -42,32 +46,25 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            currentDiceRoll = (currentDiceRoll + 1).clamp(1, 6);
+                            yellowDiceRoll = (yellowDiceRoll + 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
                           Icons.arrow_drop_up,
                           color: Colors.white60,
-                          size: 40,
-                        ),
-                      ),
-                      Text(
-                        '$currentDiceRoll',
-                        style: const TextStyle(
-                          fontSize: 24,
-                          color: Colors.white60,
+                          size: 50,
                         ),
                       ),
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            currentDiceRoll = (currentDiceRoll - 1).clamp(1, 6);
+                            yellowDiceRoll = (yellowDiceRoll - 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
                           Icons.arrow_drop_down,
                           color: Colors.white60,
-                          size: 40,
+                          size: 50,
                         ),
                       ),
                     ],
@@ -75,12 +72,12 @@ class _DiceRollerState extends State<DiceRoller> {
                 ],
               ),
               const SizedBox(
-                width: 20,
+                width: 2,
               ),
               Column(
                 children: [
                   Image.asset(
-                    "assets/images/reddice-$currentDiceRoll2.png",
+                    "assets/images/redDiceRoll-$redDiceRoll.png",
                     width: 120,
                   ),
                   Row(
@@ -88,32 +85,27 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            currentDiceRoll2 = (currentDiceRoll2 + 1).clamp(1, 6);
+                            redDiceRoll =
+                                (redDiceRoll + 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
                           Icons.arrow_drop_up,
                           color: Colors.white60,
-                          size: 40,
-                        ),
-                      ),
-                      Text(
-                        '$currentDiceRoll2',
-                        style: const TextStyle(
-                          fontSize: 24,
-                          color: Colors.white60,
+                          size: 50,
                         ),
                       ),
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            currentDiceRoll2 = (currentDiceRoll2 - 1).clamp(1, 6);
+                            redDiceRoll =
+                                (redDiceRoll - 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
                           Icons.arrow_drop_down,
                           color: Colors.white60,
-                          size: 40,
+                          size: 50,
                         ),
                       ),
                     ],
@@ -121,6 +113,94 @@ class _DiceRollerState extends State<DiceRoller> {
                 ],
               ),
             ],
+          ),
+          const SizedBox(height: 1),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Image.asset(
+                    "assets/images/greendice-$greendice.png",
+                    width: 120,
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            greendice = (greendice + 1).clamp(1, 6);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.arrow_drop_up,
+                          color: Colors.white60,
+                          size: 50,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            greendice = (greendice - 1).clamp(1, 6);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white60,
+                          size: 50,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 2,
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    "assets/images/bluedice-$bluedice.png",
+                    width: 120,
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            bluedice =
+                                (bluedice + 1).clamp(1, 6);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.arrow_drop_up,
+                          color: Colors.white60,
+                          size: 50,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            bluedice =
+                                (bluedice - 1).clamp(1, 6);
+                          });
+                        },
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white60,
+                          size: 50,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 1),
+          Text(
+            '${yellowDiceRoll + redDiceRoll} (${DiceLogic.nidurstodur(yellowDiceRoll, redDiceRoll)})',
+            style: const TextStyle(fontSize: 20, color: Colors.white60),
           ),
           const SizedBox(height: 20),
           TextButton(

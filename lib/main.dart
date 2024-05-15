@@ -1,14 +1,4 @@
 import 'package:flutter/material.dart';
+import 'navigator.dart';
 
-import 'gradientContainerRGBY.dart';
-import 'package:lokaverk/Vitni.dart';
-
-void main() {
-  runApp(
-    const MaterialApp(
-      home: Scaffold(
-        body: GradientContainerRGBY.litir(),
-      ),
-    ),
-  );
-}
+void main() => runApp(const BottomNavigatorBar());
