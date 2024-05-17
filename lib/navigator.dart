@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dice_roller.dart';
-import 'package:lokaverk/Vitni.dart';
+import 'package:lokaverk/Vitni/Vitni.dart';
 
 class BottomNavigatorBar extends StatelessWidget {
   const BottomNavigatorBar({super.key});

@@ -202,7 +202,7 @@ class _DiceRollerState extends State<DiceRoller> {
             '${yellowDiceRoll + redDiceRoll} (${DiceLogic.nidurstodur(yellowDiceRoll, redDiceRoll)})',
             style: const TextStyle(fontSize: 20, color: Colors.white60),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           TextButton(
             onPressed: rollDice,
             style: TextButton.styleFrom(
