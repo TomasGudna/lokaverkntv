@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dice_roller.dart';
+import 'throwing/dice_roller.dart';
 import 'package:lokaverk/Vitni/Vitni.dart';
 
 class BottomNavigatorBar extends StatelessWidget {
@@ -25,11 +25,13 @@ class _BottomNavigatorState extends State<BottomNavigator> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Column(
-      children: [
-        DiceRoller(),
-        Vitni(),
-      ],
+    SingleChildScrollView(
+      child: Column(
+        children: [
+          DiceRoller(),
+          Vitni(),
+        ],
+      ),
     ),
     Text(
       'Eldri köst',

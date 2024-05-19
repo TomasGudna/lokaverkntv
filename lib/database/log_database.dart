@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:lokaverk/model/log.dart';
+import 'package:lokaverk/database/log.dart';
 
 class LogDatabase {
   static final LogDatabase instance = LogDatabase._init();

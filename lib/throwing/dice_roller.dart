@@ -12,22 +12,26 @@ class DiceRoller extends StatefulWidget {
 }
 
 class _DiceRollerState extends State<DiceRoller> {
-  var yellowDiceRoll = 1;
-  var redDiceRoll = 1;
+  var yellowDiceRoll = 2;
+  var redDiceRoll = 3;
   var bluedice = 1;
   var greendice = 1;
 
   void rollDice() {
     setState(() {
-      yellowDiceRoll = randomizer.nextInt(6) + 1;
-      redDiceRoll = randomizer.nextInt(6) + 1;
-      bluedice = randomizer.nextInt(6) + 1;
-      greendice = randomizer.nextInt(6) + 1;
+      if (yellowDiceRoll + redDiceRoll == 2 || yellowDiceRoll + redDiceRoll == 12) {
+        greendice = randomizer.nextInt(6) + 1;
+        bluedice = randomizer.nextInt(6) + 1;
+      } else {
+        yellowDiceRoll = randomizer.nextInt(6) + 1;
+        redDiceRoll = randomizer.nextInt(6) + 1;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final yellowRedSum = yellowDiceRoll + redDiceRoll;
     return Container(
       margin: const EdgeInsets.all(10),
       child: Column(
@@ -85,8 +89,7 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            redDiceRoll =
-                                (redDiceRoll + 1).clamp(1, 6);
+                            redDiceRoll = (redDiceRoll + 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
@@ -98,8 +101,7 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            redDiceRoll =
-                                (redDiceRoll - 1).clamp(1, 6);
+                            redDiceRoll = (redDiceRoll - 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
@@ -115,91 +117,95 @@ class _DiceRollerState extends State<DiceRoller> {
             ],
           ),
           const SizedBox(height: 1),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Image.asset(
-                    "assets/images/greendice-$greendice.png",
-                    width: 120,
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            greendice = (greendice + 1).clamp(1, 6);
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_drop_up,
-                          color: Colors.white60,
-                          size: 50,
+          if (yellowRedSum == 2 || yellowRedSum == 12)
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/greendice-$greendice.png",
+                          width: 120,
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            greendice = (greendice - 1).clamp(1, 6);
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: Colors.white60,
-                          size: 50,
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  greendice = (greendice + 1).clamp(1, 6);
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.arrow_drop_up,
+                                color: Colors.white60,
+                                size: 50,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  greendice = (greendice - 1).clamp(1, 6);
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.white60,
+                                size: 50,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 2,
-              ),
-              Column(
-                children: [
-                  Image.asset(
-                    "assets/images/bluedice-$bluedice.png",
-                    width: 120,
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            bluedice =
-                                (bluedice + 1).clamp(1, 6);
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_drop_up,
-                          color: Colors.white60,
-                          size: 50,
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 2,
+                    ),
+                    Column(
+                      children: [
+                        Image.asset(
+                          "assets/images/bluedice-$bluedice.png",
+                          width: 120,
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            bluedice =
-                                (bluedice - 1).clamp(1, 6);
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: Colors.white60,
-                          size: 50,
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  bluedice = (bluedice + 1).clamp(1, 6);
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.arrow_drop_up,
+                                color: Colors.white60,
+                                size: 50,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  bluedice = (bluedice - 1).clamp(1, 6);
+                                });
+                              },
+                              icon: const Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.white60,
+                                size: 50,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 1),
+              ],
+            ),
           const SizedBox(height: 1),
           Text(
-            '${yellowDiceRoll + redDiceRoll} (${DiceLogic.nidurstodur(yellowDiceRoll, redDiceRoll)})',
+            '$yellowRedSum (${DiceLogic.nidurstodur(yellowDiceRoll, redDiceRoll)})',
             style: const TextStyle(fontSize: 20, color: Colors.white60),
           ),
           const SizedBox(height: 10),
