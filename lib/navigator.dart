@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'throwing/dice_roller.dart';
 import 'package:lokaverk/Vitni/Vitni.dart';
+import '../logs/eldri_kost.dart';
 
 class BottomNavigatorBar extends StatelessWidget {
   const BottomNavigatorBar({super.key});

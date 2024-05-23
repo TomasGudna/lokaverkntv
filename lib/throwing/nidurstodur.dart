@@ -12,6 +12,32 @@ class DiceLogic {
     }
     return "";
   }
+
+  static String newDiceLogic(int greenRoll, int blueRoll) {
+    bool isGreenEven = greenRoll % 2 == 0;
+
+    if (isGreenEven) {
+      switch (blueRoll) {
+        case 1: return "KFC";
+        case 2: return "J&J";
+        case 3: return "Lemon";
+        case 4: return "Brauð & Co";
+        case 5: return "Sara kebab";
+        case 6: return "KFC";
+        default: return "Kasta aftur";
+      }
+    } else {
+      switch (blueRoll) {
+        case 1: return "JWI";
+        case 2: return "Pure Deli";
+        case 3: return "Subway";
+        case 4: return "Metro";
+        case 5: return "JWI";
+        case 6: return "Salatbarinn";
+        default: return "Kasta aftur";
+      }
+    }
+  }
 }
 
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'vitni_takki.dart';
+import '../database/log.dart';
+import '../database/log_database.dart';
+import '../throwing/dice_roller.dart';
 
 class Vitni extends StatefulWidget {
   const Vitni({Key? key}) : super(key: key);
@@ -8,10 +11,26 @@ class Vitni extends StatefulWidget {
   _Vitni createState() => _Vitni();
 }
 
+
+
 class _Vitni extends State<Vitni> {
   String selectedButton = '';
   int? selectedOptionIndex;
   List<bool> selectedOptions = [];
+
+
+  void saveLog() async {
+    final log = Log(
+      yellowThrow: 0, // Example value, replace with actual value
+      redThrow: 0, // Example value, replace with actual value
+      kastari: selectedButton,
+      vitni: 'Vitni', // Example value, replace with actual value
+      nidurstada: 'Nidurstada', // Example value, replace with actual value
+      createdTime: DateTime.now(),
+    );
+
+    await LogDatabase.instance.create(log);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +137,7 @@ class _Vitni extends State<Vitni> {
                   child: const Text('Vista'),
                   onPressed: () {
                     // Bæta við til að vista
+                    //TODO
                   },
                 ),
                 TextButton(
@@ -166,6 +186,7 @@ class _Vitni extends State<Vitni> {
                   child: const Text('Vista'),
                   onPressed: () {
                     // Bæta við til að vista
+                    //TODO
                   },
                 ),
                 TextButton(
