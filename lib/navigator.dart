@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'throwing/dice_roller.dart';
 import 'package:lokaverk/Vitni/Vitni.dart';
 import '../logs/eldri_kost.dart';
+import '../save_container/container.dart';
 
 class BottomNavigatorBar extends StatelessWidget {
   const BottomNavigatorBar({super.key});
@@ -21,19 +22,14 @@ class BottomNavigator extends StatefulWidget {
   State<BottomNavigator> createState() => _BottomNavigatorState();
 }
 
+
+
 class _BottomNavigatorState extends State<BottomNavigator> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    SingleChildScrollView(
-      child: Column(
-        children: [
-          DiceRoller(),
-          Vitni(),
-        ],
-      ),
-    ),
+    Save(),
     Text(
       'Eldri köst',
       style: optionStyle,

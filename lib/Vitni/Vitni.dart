@@ -1,116 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:lokaverk/classes/classes.dart';
 import 'vitni_takki.dart';
 import '../database/log.dart';
 import '../database/log_database.dart';
-import '../throwing/dice_roller.dart';
+
+
 
 class Vitni extends StatefulWidget {
-  const Vitni({Key? key}) : super(key: key);
+  final Function(VitniObject) updateParentState;
+
+  Vitni({required this.updateParentState});
 
   @override
-  _Vitni createState() => _Vitni();
+  State<Vitni> createState() => _VitniState();
 }
 
-
-
-class _Vitni extends State<Vitni> {
+class _VitniState extends State<Vitni> {
   String selectedButton = '';
   int? selectedOptionIndex;
-  List<bool> selectedOptions = [];
-
-
-  void saveLog() async {
-    final log = Log(
-      yellowThrow: 0, // Example value, replace with actual value
-      redThrow: 0, // Example value, replace with actual value
-      kastari: selectedButton,
-      vitni: 'Vitni', // Example value, replace with actual value
-      nidurstada: 'Nidurstada', // Example value, replace with actual value
-      createdTime: DateTime.now(),
-    );
-
-    await LogDatabase.instance.create(log);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: VitniTakki(
-            buttonText: 'Kastari',
-            onPressed: () {
-              setState(() {
-                selectedButton = 'Kastari';
-                selectedOptionIndex = null;
-              });
-              _showAllOptions(context);
-            },
-          ),
-        ),
-        const SizedBox(height: 1),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            VitniTakki(
-              buttonText: 'Framendi',
-              onPressed: () {
-                setState(() {
-                  selectedButton = 'Framendi';
-                  selectedOptions = List<bool>.filled(3, false);
-                });
-                _showOptions(context);
-              },
-            ),
-            VitniTakki(
-              buttonText: 'Bakendi',
-              onPressed: () {
-                setState(() {
-                  selectedButton = 'Bakendi';
-                  selectedOptions = List<bool>.filled(3, false);
-                });
-                _showOptions(context);
-              },
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            VitniTakki(
-              buttonText: 'Kassadeild',
-              onPressed: () {
-                setState(() {
-                  selectedButton = 'Kassadeild';
-                  selectedOptions = List<bool>.filled(3, false);
-                });
-                _showOptions(context);
-              },
-            ),
-            VitniTakki(
-              buttonText: 'Söludeild',
-              onPressed: () {
-                setState(() {
-                  selectedButton = 'Söludeild';
-                  selectedOptions = List<bool>.filled(3, false);
-                });
-                _showOptions(context);
-              },
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+  VitniObject vitniObject = VitniObject();
 
   void _showOptions(BuildContext context) {
+    List<String> options = buttonOptions[selectedButton] ?? [];
+    List<bool> selectedOptions = List<bool>.filled(options.length, false);
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        List<String> options = buttonOptions[selectedButton] ?? [];
-        List<bool> selectedOptions = List<bool>.filled(options.length, false);
-
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return AlertDialog(
@@ -136,8 +52,30 @@ class _Vitni extends State<Vitni> {
                 TextButton(
                   child: const Text('Vista'),
                   onPressed: () {
-                    // Bæta við til að vista
-                    //TODO
+                    String selectedVitni = options
+                        .asMap()
+                        .entries
+                        .where((entry) => selectedOptions[entry.key])
+                        .map((entry) => entry.value)
+                        .join(', ');
+
+                    switch (selectedButton) {
+                      case 'Framendi':
+                        vitniObject.framendiVitni = selectedVitni;
+                        break;
+                      case 'Bakendi':
+                        vitniObject.bakendiVitni = selectedVitni;
+                        break;
+                      case 'Kassadeild':
+                        vitniObject.kassadeildVitni = selectedVitni;
+                        break;
+                      case 'Söludeild':
+                        vitniObject.soludeildVitni = selectedVitni;
+                        break;
+                    }
+
+                    widget.updateParentState(vitniObject);
+                    Navigator.of(context).pop();
                   },
                 ),
                 TextButton(
@@ -185,8 +123,11 @@ class _Vitni extends State<Vitni> {
                 TextButton(
                   child: const Text('Vista'),
                   onPressed: () {
-                    // Bæta við til að vista
-                    //TODO
+                    if (selectedOptionIndex != null) {
+                      vitniObject.kastari = allNames[selectedOptionIndex!];
+                      widget.updateParentState(vitniObject);
+                    }
+                    Navigator.of(context).pop();
                   },
                 ),
                 TextButton(
@@ -213,4 +154,72 @@ class _Vitni extends State<Vitni> {
     'Kassadeild': ['Tómas', 'Þór', 'Kormákur', 'Sveinn'],
     'Söludeild': ['Sara', 'Federica', 'Gunnar'],
   };
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: VitniTakki(
+            buttonText: 'Kastari',
+            onPressed: () {
+              setState(() {
+                selectedButton = 'Kastari';
+                selectedOptionIndex = null;
+              });
+              _showAllOptions(context);
+            },
+          ),
+        ),
+        const SizedBox(height: 1),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            VitniTakki(
+              buttonText: 'Framendi',
+              onPressed: () {
+                setState(() {
+                  selectedButton = 'Framendi';
+                });
+                _showOptions(context);
+              },
+            ),
+            VitniTakki(
+              buttonText: 'Bakendi',
+              onPressed: () {
+                setState(() {
+                  selectedButton = 'Bakendi';
+                });
+                _showOptions(context);
+              },
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            VitniTakki(
+              buttonText: 'Kassadeild',
+              onPressed: () {
+                setState(() {
+                  selectedButton = 'Kassadeild';
+                });
+                _showOptions(context);
+              },
+            ),
+            VitniTakki(
+              buttonText: 'Söludeild',
+              onPressed: () {
+                setState(() {
+                  selectedButton = 'Söludeild';
+                });
+                _showOptions(context);
+              },
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }

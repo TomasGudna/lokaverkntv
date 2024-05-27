@@ -4,60 +4,57 @@ import 'nidurstodur.dart';
 import '../Vitni/Vitni.dart';
 import '../database/log.dart';
 import '../database/log_database.dart';
+import '../classes/classes.dart';
 
 final randomizer = Random();
 
 class DiceRoller extends StatefulWidget {
-  const DiceRoller({Key? key}) : super(key: key);
+  final Function(DiceRollerObject) updateParentState;
+  DiceRoller({required this.updateParentState});
+  //DiceRoller({Key? key}) : super(key: key);
 
   @override
   State<DiceRoller> createState() => _DiceRollerState();
 }
 
 class _DiceRollerState extends State<DiceRoller> {
-  int? yellowDiceRoll;
-  int? redDiceRoll;
-  int? bluedice;
-  int? greendice;
+  DiceRollerObject? diceRollerObject;
 
   void rollDice() {
     setState(() {
-      if ((yellowDiceRoll ?? 0) + (redDiceRoll ?? 0) == 2 || (yellowDiceRoll ?? 0) + (redDiceRoll ?? 0) == 12) {
-        greendice = randomizer.nextInt(6) + 1;
-        bluedice = randomizer.nextInt(6) + 1;
+      diceRollerObject?.nidurstada = DiceLogic.nidurstodur(diceRollerObject?.yellowDiceRoll ?? 0, diceRollerObject?.redDiceRoll ?? 0);
+      //Hvað er ég að pæla með þennan one liner??
+      //mögulega update í framtíðinni...
+      if ((diceRollerObject?.yellowDiceRoll ?? 0) + (diceRollerObject?.redDiceRoll ?? 0) == 2 ||
+          (diceRollerObject?.yellowDiceRoll ?? 0) + (diceRollerObject?.redDiceRoll ?? 0) == 12) {
+        diceRollerObject?.greendice = randomizer.nextInt(6) + 1;
+        diceRollerObject?.bluedice = randomizer.nextInt(6) + 1;
       } else {
-        yellowDiceRoll = randomizer.nextInt(6) + 1;
-        redDiceRoll = randomizer.nextInt(6) + 1;
+        diceRollerObject?.yellowDiceRoll = randomizer.nextInt(6) + 1;
+        diceRollerObject?.redDiceRoll = randomizer.nextInt(6) + 1;
       }
     });
+
+    setState(() {
+
+    });
+    widget.updateParentState(diceRollerObject!);
   }
 
-  void saveLog() async {
-    final log = Log(
-      yellowThrow: yellowDiceRoll ?? 0,
-      redThrow: redDiceRoll ?? 0,
-      greenThrow: greendice ?? 0,
-      blueThrow: bluedice ?? 0,
-      kastari: 'kastari', // Example value, replace with actual value
-      vitni: 'vitni', // Example value, replace with actual value
-      nidurstada: 'nidurstada', // Example value, replace with actual value
-      createdTime: DateTime.now(),
-    );
 
-    await LogDatabase.instance.create(log);
-  }
+
 
   @override
   Widget build(BuildContext context) {
-    final yellowRedSum = (yellowDiceRoll ?? 0) + (redDiceRoll ?? 0);
+    final yellowRedSum = (diceRollerObject?.yellowDiceRoll ?? 0) + (diceRollerObject?.redDiceRoll ?? 0);
     String blueGreenResult = "";
 
     if (yellowRedSum == 2 || yellowRedSum == 12) {
-      blueGreenResult = DiceLogic.newDiceLogic(bluedice ?? 0, greendice ?? 0);
+      blueGreenResult = DiceLogic.newDiceLogic(diceRollerObject?.bluedice ?? 0, diceRollerObject?.greendice ?? 0);
     }
 
-    bool yellowRedDoubles = yellowDiceRoll != null && redDiceRoll != null && yellowDiceRoll == redDiceRoll;
-    bool blueGreenDoubles = bluedice != null && greendice != null && bluedice == greendice;
+    bool yellowRedDoubles = diceRollerObject?.yellowDiceRoll != null && diceRollerObject?.redDiceRoll != null && diceRollerObject?.yellowDiceRoll == diceRollerObject?.redDiceRoll;
+    bool blueGreenDoubles = diceRollerObject?.bluedice != null && diceRollerObject?.greendice != null && diceRollerObject?.bluedice == diceRollerObject?.greendice;
     String doublesText = yellowRedDoubles ? (blueGreenDoubles ? "DOUBLE DOUBLES!" : "DOUBLES!") : "";
 
     return Container(
@@ -70,8 +67,8 @@ class _DiceRollerState extends State<DiceRoller> {
               Column(
                 children: [
                   Image.asset(
-                    yellowDiceRoll != null
-                        ? "assets/images/yellowDiceRoll-$yellowDiceRoll.png"
+                    diceRollerObject?.yellowDiceRoll != null
+                        ? "assets/images/yellowDiceRoll-${diceRollerObject?.yellowDiceRoll}.png"
                         : "assets/images/yellowblank.png",
                     width: 120,
                   ),
@@ -80,7 +77,7 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            yellowDiceRoll = ((yellowDiceRoll ?? 0) + 1).clamp(1, 6);
+                            diceRollerObject?.yellowDiceRoll = ((diceRollerObject?.yellowDiceRoll ?? 0) + 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
@@ -92,7 +89,7 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            yellowDiceRoll = ((yellowDiceRoll ?? 0) - 1).clamp(1, 6);
+                            diceRollerObject?.yellowDiceRoll = ((diceRollerObject?.yellowDiceRoll ?? 0) - 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
@@ -109,8 +106,8 @@ class _DiceRollerState extends State<DiceRoller> {
               Column(
                 children: [
                   Image.asset(
-                    redDiceRoll != null
-                        ? "assets/images/redDiceRoll-$redDiceRoll.png"
+                    diceRollerObject?.redDiceRoll != null
+                        ? "assets/images/redDiceRoll-${diceRollerObject?.redDiceRoll}.png"
                         : "assets/images/redblank.png",
                     width: 120,
                   ),
@@ -119,7 +116,7 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            redDiceRoll = ((redDiceRoll ?? 0) + 1).clamp(1, 6);
+                            diceRollerObject?.redDiceRoll = ((diceRollerObject?.redDiceRoll ?? 0) + 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
@@ -131,7 +128,7 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            redDiceRoll = ((redDiceRoll ?? 0) - 1).clamp(1, 6);
+                            diceRollerObject?.redDiceRoll = ((diceRollerObject?.redDiceRoll ?? 0) - 1).clamp(1, 6);
                           });
                         },
                         icon: const Icon(
@@ -156,8 +153,8 @@ class _DiceRollerState extends State<DiceRoller> {
                     Column(
                       children: [
                         Image.asset(
-                          greendice != null
-                              ? "assets/images/greendice-$greendice.png"
+                          diceRollerObject?.greendice != null
+                              ? "assets/images/greendice-${diceRollerObject?.greendice}.png"
                               : "assets/images/greenblank.png",
                           width: 120,
                         ),
@@ -166,7 +163,7 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  greendice = ((greendice ?? 0) + 1).clamp(1, 6);
+                                  diceRollerObject?.greendice = ((diceRollerObject?.greendice ?? 0) + 1).clamp(1, 6);
                                 });
                               },
                               icon: const Icon(
@@ -178,7 +175,7 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  greendice = ((greendice ?? 0) - 1).clamp(1, 6);
+                                  diceRollerObject?.greendice = ((diceRollerObject?.greendice ?? 0) - 1).clamp(1, 6);
                                 });
                               },
                               icon: const Icon(
@@ -195,8 +192,8 @@ class _DiceRollerState extends State<DiceRoller> {
                     Column(
                       children: [
                         Image.asset(
-                          bluedice != null
-                              ? "assets/images/bluedice-$bluedice.png"
+                          diceRollerObject?.bluedice != null
+                              ? "assets/images/bluedice-${diceRollerObject?.bluedice}.png"
                               : "assets/images/blueblank.png",
                           width: 120,
                         ),
@@ -205,7 +202,7 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  bluedice = ((bluedice ?? 0) + 1).clamp(1, 6);
+                                  diceRollerObject?.bluedice = ((diceRollerObject?.bluedice ?? 0) + 1).clamp(1, 6);
                                 });
                               },
                               icon: const Icon(
@@ -217,7 +214,7 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  bluedice = ((bluedice ?? 0) - 1).clamp(1, 6);
+                                  diceRollerObject?.bluedice = ((diceRollerObject?.bluedice ?? 0) - 1).clamp(1, 6);
                                 });
                               },
                               icon: const Icon(
@@ -238,8 +235,8 @@ class _DiceRollerState extends State<DiceRoller> {
           const SizedBox(height: 1),
           Text(
             yellowRedSum == 2 || yellowRedSum == 12
-                ? '$yellowRedSum (${DiceLogic.nidurstodur(yellowDiceRoll ?? 0, redDiceRoll ?? 0)}) (${blueGreenResult})'
-                : '${yellowRedSum != 0 ? yellowRedSum : ''} ${yellowDiceRoll != null && redDiceRoll != null ? DiceLogic.nidurstodur(yellowDiceRoll ?? 0, redDiceRoll ?? 0) : ''}',
+                ? '$yellowRedSum (${DiceLogic.nidurstodur(diceRollerObject?.yellowDiceRoll ?? 0, diceRollerObject?.redDiceRoll ?? 0)}) (${blueGreenResult})'
+                : '${yellowRedSum != 0 ? yellowRedSum : ''} ${diceRollerObject?.yellowDiceRoll != null && diceRollerObject?.redDiceRoll != null ? DiceLogic.nidurstodur(diceRollerObject?.yellowDiceRoll ?? 0, diceRollerObject?.redDiceRoll ?? 0) : ''}',
             style: const TextStyle(fontSize: 20, color: Colors.white60),
           ),
           if (doublesText.isNotEmpty)

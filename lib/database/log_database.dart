@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:lokaverk/database/log.dart';
+import 'log_throw.dart';
+import 'log_vitni.dart';
+import 'log_field.dart';
 
 class LogDatabase {
   static final LogDatabase instance = LogDatabase._init();
@@ -28,23 +31,22 @@ class LogDatabase {
 
   Future _createDB(Database db, int version) async {
     final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-
     final textType = 'TEXT NOT NULL';
     final integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
         CREATE TABLE $tableLogs (
-        ${LogFields.id} $idType,
-        ${LogFields.vitni} $textType,
-        ${LogFields.kastari} $textType,
-        ${LogFields.yellowThrow} $integerType,
-        ${LogFields.redThrow} $integerType,
-        ${LogFields.greenThrow} $integerType,
-        ${LogFields.blueThrow} $integerType,
-        ${LogFields.time} $textType,
-        ${LogFields.nidurstada} $integerType
+        ${LogFieldsThrows.id} $idType,
+        ${LogFieldsPerson.vitni} $textType,
+        ${LogFieldsPerson.kastari} $textType,
+        ${LogFieldsThrows.yellowThrow} $integerType,
+        ${LogFieldsThrows.redThrow} $integerType,
+        ${LogFieldsThrows.greenThrow} $integerType,
+        ${LogFieldsThrows.blueThrow} $integerType,
+        ${LogFieldsThrows.time} $textType,
+        ${LogFieldsThrows.nidurstada} $integerType
     )
-        ''');
+    ''');
   }
 
   Future<Log> create(Log log) async {
@@ -59,8 +61,8 @@ class LogDatabase {
     final maps = await db.query(
       tableLogs,
       columns: LogFields.values,
-      where: '${LogFields.id} = ?',
-      whereArgs: [id]
+      where: '${LogFieldsThrows.id} = ?',
+      whereArgs: [id],
     );
 
     if (maps.isNotEmpty) {
@@ -73,7 +75,7 @@ class LogDatabase {
   Future<List<Log>> readAllLogs() async {
     final db = await instance.database;
 
-    final orderBy = '${LogFields.time} ASC';
+    final orderBy = '${LogFieldsThrows.time} ASC';
     final result = await db.query(tableLogs, orderBy: orderBy);
 
     return result.map((json) => Log.fromJson(json)).toList();
@@ -85,7 +87,7 @@ class LogDatabase {
     return db.update(
       tableLogs,
       log.toJson(),
-      where:  '${LogFields.id} = ?',
+      where: '${LogFieldsThrows.id} = ?',
       whereArgs: [log.id],
     );
   }
@@ -95,7 +97,7 @@ class LogDatabase {
 
     return await db.delete(
       tableLogs,
-      where:  '${LogFields.id} = ?',
+      where: '${LogFieldsThrows.id} = ?',
       whereArgs: [id],
     );
   }
