@@ -55,7 +55,7 @@ class _SaveState extends State<Save> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          DiceRoller(updateParentState: updateDiceState),
+          DiceRoller(updateParentState: (DiceRollerObject ) {  },),
           Vitni(updateParentState: updateVitniState),
         ],
       ),

@@ -6,14 +6,20 @@ class LogFormWidget extends StatelessWidget {
   final int? greenThrow;
   final int? blueThrow;
   final String? kastari;
-  final String? vitni;
+  final String? framendiVitni;
+  final String? bakendiVitni;
+  final String? kassadeildVitni;
+  final String? soludeildVitni;
   final String? nidurstada;
   final ValueChanged<int> onChangedYellowThrow;
   final ValueChanged<int> onChangedRedThrow;
   final ValueChanged<int?> onChangedGreenThrow;
   final ValueChanged<int?> onChangedBlueThrow;
   final ValueChanged<String> onChangedKastari;
-  final ValueChanged<String> onChangedVitni;
+  final ValueChanged<String> onChangedFramendiVitni;
+  final ValueChanged<String> onChangedBakendiVitni;
+  final ValueChanged<String> onChangedKassadeildVitni;
+  final ValueChanged<String> onChangedSoludeildVitni;
   final ValueChanged<String> onChangedNidurstada;
 
   const LogFormWidget({
@@ -23,14 +29,20 @@ class LogFormWidget extends StatelessWidget {
     this.greenThrow,
     this.blueThrow,
     this.kastari = '',
-    this.vitni = '',
+    this.framendiVitni,
+    this.bakendiVitni,
+    this.kassadeildVitni,
+    this.soludeildVitni,
     this.nidurstada = '',
     required this.onChangedYellowThrow,
     required this.onChangedRedThrow,
     required this.onChangedGreenThrow,
     required this.onChangedBlueThrow,
     required this.onChangedKastari,
-    required this.onChangedVitni,
+    required this.onChangedFramendiVitni,
+    required this.onChangedBakendiVitni,
+    required this.onChangedKassadeildVitni,
+    required this.onChangedSoludeildVitni,
     required this.onChangedNidurstada,
   }) : super(key: key);
 
@@ -51,7 +63,13 @@ class LogFormWidget extends StatelessWidget {
           const SizedBox(height: 8),
           buildKastariField(),
           const SizedBox(height: 8),
-          buildVitniField(),
+          buildFramendiVitniField(),
+          const SizedBox(height: 8),
+          buildBakendiVitniField(),
+          const SizedBox(height: 8),
+          buildKassadeildVitniField(),
+          const SizedBox(height: 8),
+          buildSoludeildVitniField(),
           const SizedBox(height: 8),
           buildNidurstadaField(),
           const SizedBox(height: 16),
@@ -109,9 +127,9 @@ class LogFormWidget extends StatelessWidget {
     onChanged: onChangedKastari,
   );
 
-  Widget buildVitniField() => TextFormField(
+  Widget buildFramendiVitniField() => TextFormField(
     maxLines: 1,
-    initialValue: vitni,
+    initialValue: framendiVitni,
     style: const TextStyle(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
@@ -119,11 +137,54 @@ class LogFormWidget extends StatelessWidget {
     ),
     decoration: const InputDecoration(
       border: OutlineInputBorder(),
-      labelText: 'Vitni',
+      labelText: 'Framendi Vitni',
     ),
-    validator: (value) =>
-    value != null && value.isEmpty ? 'Vantar að velja vitni' : null,
-    onChanged: onChangedVitni,
+    onChanged: onChangedFramendiVitni,
+  );
+
+  Widget buildBakendiVitniField() => TextFormField(
+    maxLines: 1,
+    initialValue: bakendiVitni,
+    style: const TextStyle(
+      color: Colors.black87,
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+    ),
+    decoration: const InputDecoration(
+      border: OutlineInputBorder(),
+      labelText: 'Bakendi Vitni',
+    ),
+    onChanged: onChangedBakendiVitni,
+  );
+
+  Widget buildKassadeildVitniField() => TextFormField(
+    maxLines: 1,
+    initialValue: kassadeildVitni,
+    style: const TextStyle(
+      color: Colors.black87,
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+    ),
+    decoration: const InputDecoration(
+      border: OutlineInputBorder(),
+      labelText: 'Kassadeild Vitni',
+    ),
+    onChanged: onChangedKassadeildVitni,
+  );
+
+  Widget buildSoludeildVitniField() => TextFormField(
+    maxLines: 1,
+    initialValue: soludeildVitni,
+    style: const TextStyle(
+      color: Colors.black87,
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+    ),
+    decoration: const InputDecoration(
+      border: OutlineInputBorder(),
+      labelText: 'Söludeild Vitni',
+    ),
+    onChanged: onChangedSoludeildVitni,
   );
 
   Widget buildNidurstadaField() => TextFormField(

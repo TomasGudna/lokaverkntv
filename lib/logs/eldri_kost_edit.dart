@@ -24,7 +24,10 @@ class _AddEditLogPageState extends State<AddEditLogPage> {
   late int? greenThrow;
   late int? blueThrow;
   late String kastari;
-  late String vitni;
+  late String framendiVitni;
+  late String bakendiVitni;
+  late String kassadeildVitni;
+  late String soludeildVitni;
   late String nidurstada;
   late DateTime createdTime;
 
@@ -37,7 +40,10 @@ class _AddEditLogPageState extends State<AddEditLogPage> {
     greenThrow = widget.log?.greenThrow ?? null;
     blueThrow = widget.log?.blueThrow ?? null;
     kastari = widget.log?.kastari ?? '';
-    vitni = widget.log?.vitni ?? '';
+    framendiVitni = widget.log?.framendiVitni ?? '';
+    bakendiVitni = widget.log?.bakendiVitni ?? '';
+    kassadeildVitni = widget.log?.kassadeildVitni ?? '';
+    soludeildVitni = widget.log?.soludeildVitni ?? '';
     nidurstada = widget.log?.nidurstada ?? '';
     createdTime = widget.log?.createdTime ?? DateTime.now();
   }
@@ -55,21 +61,23 @@ class _AddEditLogPageState extends State<AddEditLogPage> {
         greenThrow: greenThrow,
         blueThrow: blueThrow,
         kastari: kastari,
-        vitni: vitni,
         nidurstada: nidurstada,
         onChangedYellowThrow: (yellowThrow) => setState(() => this.yellowThrow = yellowThrow),
         onChangedRedThrow: (redThrow) => setState(() => this.redThrow = redThrow),
         onChangedGreenThrow: (greenThrow) => setState(() => this.greenThrow = greenThrow),
         onChangedBlueThrow: (blueThrow) => setState(() => this.blueThrow = blueThrow),
         onChangedKastari: (kastari) => setState(() => this.kastari = kastari),
-        onChangedVitni: (vitni) => setState(() => this.vitni = vitni),
+        onChangedFramendiVitni: (framendiVitni) => setState(() => this.framendiVitni = framendiVitni),
+        onChangedBakendiVitni: (bakendiVitni) => setState(() => this.bakendiVitni = bakendiVitni),
+        onChangedKassadeildVitni: (kassadeildVitni) => setState(() => this.kassadeildVitni = kassadeildVitni),
+        onChangedSoludeildVitni: (soludeildVitni) => setState(() => this.soludeildVitni = soludeildVitni),
         onChangedNidurstada: (nidurstada) => setState(() => this.nidurstada = nidurstada),
       ),
     ),
   );
 
   Widget buildButton() {
-    final isFormValid = kastari.isNotEmpty && vitni.isNotEmpty && nidurstada.isNotEmpty;
+    final isFormValid = kastari.isNotEmpty && nidurstada.isNotEmpty;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -107,7 +115,10 @@ class _AddEditLogPageState extends State<AddEditLogPage> {
       greenThrow: greenThrow,
       blueThrow: blueThrow,
       kastari: kastari,
-      vitni: vitni,
+      framendiVitni: framendiVitni,
+      bakendiVitni: bakendiVitni,
+      kassadeildVitni: kassadeildVitni,
+      soludeildVitni: soludeildVitni,
       nidurstada: nidurstada,
       createdTime: createdTime,
     );
@@ -122,7 +133,10 @@ class _AddEditLogPageState extends State<AddEditLogPage> {
       greenThrow: greenThrow,
       blueThrow: blueThrow,
       kastari: kastari,
-      vitni: vitni,
+      framendiVitni: framendiVitni,
+      bakendiVitni: bakendiVitni,
+      kassadeildVitni: kassadeildVitni,
+      soludeildVitni: soludeildVitni,
       nidurstada: nidurstada,
       createdTime: DateTime.now(),
     );

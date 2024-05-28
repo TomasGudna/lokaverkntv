@@ -20,11 +20,9 @@ class DiceRoller extends StatefulWidget {
 class _DiceRollerState extends State<DiceRoller> {
   DiceRollerObject? diceRollerObject;
 
+
   void rollDice() {
     setState(() {
-      diceRollerObject?.nidurstada = DiceLogic.nidurstodur(diceRollerObject?.yellowDiceRoll ?? 0, diceRollerObject?.redDiceRoll ?? 0);
-      //Hvað er ég að pæla með þennan one liner??
-      //mögulega update í framtíðinni...
       if ((diceRollerObject?.yellowDiceRoll ?? 0) + (diceRollerObject?.redDiceRoll ?? 0) == 2 ||
           (diceRollerObject?.yellowDiceRoll ?? 0) + (diceRollerObject?.redDiceRoll ?? 0) == 12) {
         diceRollerObject?.greendice = randomizer.nextInt(6) + 1;

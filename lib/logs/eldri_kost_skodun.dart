@@ -77,7 +77,31 @@ class _LogDetailPageState extends State<LogDetailPage> {
           ),
           SizedBox(height: 8),
           Text(
-            log.vitni,
+            log.framendiVitni,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            log.bakendiVitni,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            log.kassadeildVitni,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            log.soludeildVitni,
             style: TextStyle(
               color: Colors.black,
               fontSize: 20,
