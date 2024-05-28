@@ -9,7 +9,10 @@ class Log {
   final int? greenThrow;
   final int? blueThrow;
   final String kastari;
-  final String vitni;
+  final String framendiVitni;
+  final String bakendiVitni;
+  final String kassadeildVitni;
+  final String soludeildVitni;
   final String nidurstada;
   final DateTime createdTime;
 
@@ -20,7 +23,10 @@ class Log {
     this.greenThrow,
     this.blueThrow,
     required this.kastari,
-    required this.vitni,
+    required this.framendiVitni,
+    required this.bakendiVitni,
+    required this.kassadeildVitni,
+    required this.soludeildVitni,
     required this.nidurstada,
     required this.createdTime,
   });
@@ -32,7 +38,10 @@ class Log {
     int? greenThrow,
     int? blueThrow,
     String? kastari,
-    String? vitni,
+    String? framendiVitni,
+    String? bakendiVitni,
+    String? kassadeildVitni,
+    String? soludeildVitni,
     String? nidurstada,
     DateTime? createdTime,
   }) =>
@@ -43,7 +52,10 @@ class Log {
         greenThrow: greenThrow ?? this.greenThrow,
         blueThrow: blueThrow ?? this.blueThrow,
         kastari: kastari ?? this.kastari,
-        vitni: vitni ?? this.vitni,
+        framendiVitni: framendiVitni ?? this.framendiVitni,
+        bakendiVitni: bakendiVitni ?? this.bakendiVitni,
+        kassadeildVitni: kassadeildVitni ?? this.kassadeildVitni,
+        soludeildVitni: soludeildVitni ?? this.soludeildVitni,
         nidurstada: nidurstada ?? this.nidurstada,
         createdTime: createdTime ?? this.createdTime,
       );
@@ -55,7 +67,10 @@ class Log {
     greenThrow: json[LogFieldsThrows.greenThrow] as int,
     blueThrow: json[LogFieldsThrows.blueThrow] as int,
     kastari: json[LogFieldsPerson.kastari] as String,
-    vitni: json[LogFieldsPerson.vitni] as String,
+    framendiVitni: json[LogFieldsPerson.framendiVitni] as String,
+    bakendiVitni: json[LogFieldsPerson.bakendiVitni] as String,
+    kassadeildVitni: json[LogFieldsPerson.kassadeildVitni] as String,
+    soludeildVitni: json[LogFieldsPerson.soludeildVitni] as String,
     nidurstada: json[LogFieldsThrows.nidurstada] as String,
     createdTime: DateTime.parse(json[LogFieldsThrows.time] as String),
   );
@@ -67,7 +82,10 @@ class Log {
     LogFieldsThrows.greenThrow: greenThrow,
     LogFieldsThrows.blueThrow: blueThrow,
     LogFieldsPerson.kastari: kastari,
-    LogFieldsPerson.vitni: vitni,
+    LogFieldsPerson.framendiVitni: framendiVitni,
+    LogFieldsPerson.bakendiVitni: bakendiVitni,
+    LogFieldsPerson.kassadeildVitni: kassadeildVitni,
+    LogFieldsPerson.soludeildVitni: soludeildVitni,
     LogFieldsThrows.nidurstada: nidurstada,
     LogFieldsThrows.time: createdTime.toIso8601String(),
   };

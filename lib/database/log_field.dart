@@ -11,7 +11,10 @@ class LogFields {
     LogFieldsThrows.blueThrow,
     LogFieldsThrows.greenThrow,
     LogFieldsPerson.kastari,
-    LogFieldsPerson.vitni,
+    LogFieldsPerson.framendiVitni,
+    LogFieldsPerson.bakendiVitni,
+    LogFieldsPerson.kassadeildVitni,
+    LogFieldsPerson.soludeildVitni,
     LogFieldsThrows.nidurstada,
     LogFieldsThrows.time
   ];

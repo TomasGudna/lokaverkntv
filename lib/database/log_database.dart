@@ -37,7 +37,10 @@ class LogDatabase {
     await db.execute('''
         CREATE TABLE $tableLogs (
         ${LogFieldsThrows.id} $idType,
-        ${LogFieldsPerson.vitni} $textType,
+        ${LogFieldsPerson.framendiVitni} $textType,
+        ${LogFieldsPerson.bakendiVitni} $textType,
+        ${LogFieldsPerson.kassadeildVitni} $textType,
+        ${LogFieldsPerson.soludeildVitni} $textType,
         ${LogFieldsPerson.kastari} $textType,
         ${LogFieldsThrows.yellowThrow} $integerType,
         ${LogFieldsThrows.redThrow} $integerType,
