@@ -6,8 +6,6 @@ class DiceRollerObject {
   int? bluedice;
   int? greendice;
   String? nidurstada;
-
-
 }
 
 class VitniObject {
