@@ -1,3 +1,4 @@
+
 import 'log_vitni.dart';
 import 'log_throw.dart';
 import 'log_field.dart';
@@ -90,3 +91,4 @@ class Log {
     LogFieldsThrows.time: createdTime.toIso8601String(),
   };
 }
+

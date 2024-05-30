@@ -1,5 +1,13 @@
-
 /*
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../database/log.dart';
+import '../database/log_database.dart';
+import 'eldri_kost_edit.dart';
+import 'eldri_kost_skodun.dart';
+import 'eldri_kost_card.dart';
+import 'eldri_kost_form.dart';
+
 class LogsPage extends StatefulWidget {
   const LogsPage({Key? key}) : super(key: key);
 
@@ -91,5 +99,6 @@ class _LogsPageState extends State<LogsPage> {
     ),
   );
 }
+
 
  */

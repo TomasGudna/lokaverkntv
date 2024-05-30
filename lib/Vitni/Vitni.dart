@@ -93,7 +93,7 @@ class _VitniState extends State<Vitni> {
   }
 
   void _showAllOptions(BuildContext context) {
-    List<String> allNames = _getAllNames();
+    List<String> allNames = _getAllNames().where((name) => name != 'HERESY').toList();
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -149,10 +149,10 @@ class _VitniState extends State<Vitni> {
   }
 
   final Map<String, List<String>> buttonOptions = {
-    'Bakendi': ['Arnar', 'Þröstur', 'Engilbert'],
-    'Framendi': ['Grímur', 'Marzúk', 'Fannar'],
-    'Kassadeild': ['Tómas', 'Þór', 'Kormákur', 'Sveinn'],
-    'Söludeild': ['Sara', 'Federica', 'Gunnar'],
+    'Bakendi': ['Arnar', 'Þröstur', 'Engilbert', 'HERESY'],
+    'Framendi': ['Grímur', 'Marzúk', 'Fannar', 'HERESY'],
+    'Kassadeild': ['Tómas', 'Þór', 'Kormákur', 'Sveinn', 'HERESY'],
+    'Söludeild': ['Sara', 'Federica', 'Gunnar', 'HERESY'],
   };
 
   @override

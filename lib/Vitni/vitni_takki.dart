@@ -40,7 +40,7 @@ class VitniTakki extends StatelessWidget {
           buttonText,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 20, // Adjust the font size
+            fontSize: 20,
           ),
         ),
       ),

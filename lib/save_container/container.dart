@@ -44,10 +44,9 @@ class _SaveState extends State<Save> {
     });
   }
 
-  Future<void> saveLog() async {
+  Future<void> saveLog(BuildContext context) async {
 
-    if (yellowThrow != null && redThrow != null && kastari != null && framVitni != null &&
-        bakVitni != null && soluVitni != null && kassaVitni != null && nidurstada != null) {
+    if (yellowThrow != null && redThrow != null && kastari != null &&  nidurstada != null) {
       final log = Log(
         yellowThrow: yellowThrow!,
         redThrow: redThrow!,
@@ -62,7 +61,12 @@ class _SaveState extends State<Save> {
         createdTime: DateTime.now(),
       );
       await LogDatabase.instance.create(log);
-
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Teningakast dagsins vistað'),
+          duration: Durations.short2,
+        ),
+      );
     }
   }
 
@@ -75,7 +79,7 @@ class _SaveState extends State<Save> {
           Vitni(updateParentState: updateVitniState),
           SizedBox(height: 10),
           TextButton(
-            onPressed: saveLog,
+            onPressed: () => saveLog(context),
             style: TextButton.styleFrom(
                 foregroundColor: Colors.white60,
                 textStyle: const TextStyle(

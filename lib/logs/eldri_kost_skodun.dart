@@ -1,5 +1,9 @@
-
 /*
+import 'package:flutter/material.dart';
+import '../database/log_database.dart';
+import '../database/log.dart';
+import 'eldri_kost_edit.dart';
+
 
 class LogDetailPage extends StatefulWidget {
   final int logId;
@@ -132,5 +136,7 @@ class _LogDetailPageState extends State<LogDetailPage> {
     ),
   );
 }
+
+
 
  */
