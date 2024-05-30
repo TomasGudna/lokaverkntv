@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lokaverk/classes/classes.dart';
+import '../database/log.dart';
+import '../database/log_database.dart';
 import '../throwing/dice_roller.dart';
 import '../Vitni/Vitni.dart';
 
@@ -42,6 +44,28 @@ class _SaveState extends State<Save> {
     });
   }
 
+  Future<void> saveLog() async {
+
+    if (yellowThrow != null && redThrow != null && kastari != null && framVitni != null &&
+        bakVitni != null && soluVitni != null && kassaVitni != null && nidurstada != null) {
+      final log = Log(
+        yellowThrow: yellowThrow!,
+        redThrow: redThrow!,
+        greenThrow: greenThrow,
+        blueThrow: blueThrow,
+        kastari: kastari!,
+        framendiVitni: framVitni!,
+        bakendiVitni: bakVitni!,
+        kassadeildVitni: kassaVitni!,
+        soludeildVitni: soluVitni!,
+        nidurstada: nidurstada!,
+        createdTime: DateTime.now(),
+      );
+      await LogDatabase.instance.create(log);
+
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -51,7 +75,7 @@ class _SaveState extends State<Save> {
           Vitni(updateParentState: updateVitniState),
           SizedBox(height: 10),
           TextButton(
-            onPressed: () {},
+            onPressed: saveLog,
             style: TextButton.styleFrom(
                 foregroundColor: Colors.white60,
                 textStyle: const TextStyle(
@@ -61,7 +85,7 @@ class _SaveState extends State<Save> {
                   borderRadius: BorderRadius.circular(10),
                   side: const BorderSide(color: Colors.white60),
                 ),
-                backgroundColor: Colors.greenAccent),
+                backgroundColor: Colors.greenAccent.shade400),
             child: const Text(
               "Vista kast dagsins",
               style: TextStyle(color: Colors.black),

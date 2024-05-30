@@ -275,10 +275,10 @@ class _DiceRollerState extends State<DiceRoller> {
                   fontSize: 25,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(10),
                   side: const BorderSide(color: Colors.white60),
                 ),
-                backgroundColor: Colors.white60),
+                backgroundColor: Colors.orange.shade100),
             child: const Text(
               "Kasta",
               style: TextStyle(color: Colors.black),

@@ -18,7 +18,7 @@ class LogDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('log.db');
+    _database = await _initDB('test4.db');
     return _database!;
   }
 
@@ -30,30 +30,28 @@ class LogDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
-
+    print("wow");
     await db.execute('''
         CREATE TABLE $tableLogs (
-        ${LogFieldsThrows.id} $idType,
-        ${LogFieldsPerson.framendiVitni} $textType,
-        ${LogFieldsPerson.bakendiVitni} $textType,
-        ${LogFieldsPerson.kassadeildVitni} $textType,
-        ${LogFieldsPerson.soludeildVitni} $textType,
-        ${LogFieldsPerson.kastari} $textType,
-        ${LogFieldsThrows.yellowThrow} $integerType,
-        ${LogFieldsThrows.redThrow} $integerType,
-        ${LogFieldsThrows.greenThrow} $integerType,
-        ${LogFieldsThrows.blueThrow} $integerType,
-        ${LogFieldsThrows.time} $textType,
-        ${LogFieldsThrows.nidurstada} $integerType
+        ${LogFieldsThrows.id} 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        ${LogFieldsPerson.framendiVitni} 'TEXT',
+        ${LogFieldsPerson.bakendiVitni} 'TEXT',
+        ${LogFieldsPerson.kassadeildVitni} 'TEXT',
+        ${LogFieldsPerson.soludeildVitni} 'TEXT',
+        ${LogFieldsPerson.kastari} 'TEXT NOT NULL',
+        ${LogFieldsThrows.yellowThrow} 'INTEGER NOT NULL',
+        ${LogFieldsThrows.redThrow} 'INTEGER NOT NULL',
+        ${LogFieldsThrows.greenThrow} 'INTEGER',
+        ${LogFieldsThrows.blueThrow} 'INTEGER',
+        ${LogFieldsThrows.time} 'TEXT NOT NULL',
+        ${LogFieldsThrows.nidurstada} 'INTEGER NOT NULL'
     )
     ''');
   }
 
   Future<Log> create(Log log) async {
     final db = await instance.database;
+    print(log.toJson());
     final id = await db.insert(tableLogs, log.toJson());
     return log.copy(id: id);
   }
@@ -80,7 +78,9 @@ class LogDatabase {
 
     final orderBy = '${LogFieldsThrows.time} ASC';
     final result = await db.query(tableLogs, orderBy: orderBy);
-
+    final test = result.map((json) => Log.fromJson(json)).toList();
+    print(test.length);
+    print(test);
     return result.map((json) => Log.fromJson(json)).toList();
   }
 

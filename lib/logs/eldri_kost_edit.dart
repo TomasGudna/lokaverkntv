@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import '../database/log_database.dart';
-import '../database/log.dart';
-import 'eldri_kost_card.dart';
-import 'eldri_kost_form.dart';
 
 
+/*
 class AddEditLogPage extends StatefulWidget {
   final Log? log;
 
@@ -144,3 +140,5 @@ class _AddEditLogPageState extends State<AddEditLogPage> {
     await LogDatabase.instance.create(log);
   }
 }
+
+ */

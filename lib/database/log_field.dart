@@ -1,5 +1,6 @@
 import 'log_throw.dart';
 import 'log_vitni.dart';
+import '../classes/classes.dart';
 
 final String tableLogs = 'logs';
 

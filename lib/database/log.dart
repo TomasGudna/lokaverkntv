@@ -16,7 +16,7 @@ class Log {
   final String nidurstada;
   final DateTime createdTime;
 
-  const Log({
+   Log({
     this.id,
     required this.yellowThrow,
     required this.redThrow,
