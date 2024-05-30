@@ -18,7 +18,7 @@ class LogDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('test6.db');
+    _database = await _initDB('test11.db');
     return _database!;
   }
 
@@ -51,12 +51,12 @@ class LogDatabase {
 
   Future<Log> create(Log log) async {
     final db = await instance.database;
-    print(log.toJson());
+    //print(log.toJson());
     final id = await db.insert(tableLogs, log.toJson());
     return log.copy(id: id);
   }
 
-  Future<Log> readLog(int id) async {
+  Future<Log?> readLog(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
@@ -76,11 +76,12 @@ class LogDatabase {
   Future<List<Log>> readAllLogs() async {
     final db = await instance.database;
 
-    final orderBy = '${LogFieldsThrows.time} ASC';
-    final result = await db.query(tableLogs, columns: LogFields.values, orderBy: orderBy);
-    final test = result.map((json) => Log.fromJson(json)).toList();
-    print(test.length);
-    print(test);
+    final orderBy = '${LogFieldsThrows.time} DESC';
+    final result = await db.query(tableLogs, orderBy: orderBy);
+    // tok ut þetta eftir table logs columns: LogFields.values,
+    //final test = result.map((json) => Log.fromJson(json)).toList();
+    //print(test.length);
+    //print(test);
     return result.map((json) => Log.fromJson(json)).toList();
   }
 

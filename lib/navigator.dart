@@ -35,7 +35,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
     Save(),
     LogListView(),
     Text(
-      'Sérstakar þakkir: Arnar og Daníel',
+      'Sérstakar þakkir: Arnar, Daníel og Þröstur',
       style: optionStyle,
     ),
   ];

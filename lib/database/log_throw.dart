@@ -8,7 +8,7 @@ class LogFieldsThrows {
 
    */
 
-  static final String id = '_id';
+  static final String id = 'id';
   static final String yellowThrow = 'yellow';
   static final String redThrow = 'red';
   static final String greenThrow = 'green';

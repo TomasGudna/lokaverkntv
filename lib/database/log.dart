@@ -2,6 +2,7 @@
 import 'log_vitni.dart';
 import 'log_throw.dart';
 import 'log_field.dart';
+import 'package:intl/intl.dart';
 
 class Log {
   final int? id;
@@ -65,8 +66,8 @@ class Log {
     id: json[LogFieldsThrows.id] as int?,
     yellowThrow: json[LogFieldsThrows.yellowThrow] as int,
     redThrow: json[LogFieldsThrows.redThrow] as int,
-    greenThrow: json[LogFieldsThrows.greenThrow] as int,
-    blueThrow: json[LogFieldsThrows.blueThrow] as int,
+    greenThrow: json[LogFieldsThrows.greenThrow] as int?,
+    blueThrow: json[LogFieldsThrows.blueThrow] as int?,
     kastari: json[LogFieldsPerson.kastari] as String,
     framendiVitni: json[LogFieldsPerson.framendiVitni] as String,
     bakendiVitni: json[LogFieldsPerson.bakendiVitni] as String,
