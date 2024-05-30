@@ -64,7 +64,7 @@ class _SaveState extends State<Save> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Teningakast dagsins vistað'),
-          duration: Durations.short2,
+          duration: Durations.short4,
         ),
       );
     }

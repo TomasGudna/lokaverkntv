@@ -42,14 +42,14 @@ class _DiceRollerState extends State<DiceRoller> {
         // green and blue dice roll
         diceRollerObject.greendice = randomizer.nextInt(6) + 1;
         diceRollerObject.bluedice = randomizer.nextInt(6) + 1;
-        greenBlueNidurstada = DiceLogic.newDiceLogic(diceRollerObject.greendice ?? 0, diceRollerObject.bluedice ?? 0);
+
       } else {
         // yellow and red dice roll
         diceRollerObject.yellowDiceRoll = randomizer.nextInt(6) + 1;
         diceRollerObject.redDiceRoll = randomizer.nextInt(6) + 1;
-        yellowRedSum = (diceRollerObject.yellowDiceRoll ?? 0) + (diceRollerObject.redDiceRoll ?? 0);
-        yellowRedNidurstada = DiceLogic.nidurstodur(diceRollerObject.yellowDiceRoll ?? 0, diceRollerObject.redDiceRoll ?? 0);
+
       }
+      getSumAndNidurstada();
 /*
     setState(() {
       diceRollerObject = diceRollerObject;
@@ -58,16 +58,26 @@ class _DiceRollerState extends State<DiceRoller> {
 
  */
 
-      diceRollerObject.nidurstada = yellowRedNidurstada + greenBlueNidurstada;
+
       widget.updateParentState(diceRollerObject);
 
   }
 
+  int updateDiceResult (int additive, int? diceValue) {
+    return ((diceValue ?? 0) + additive).clamp(1, 6);
+  }
 
+  void getSumAndNidurstada() {
+    yellowRedSum = (diceRollerObject.yellowDiceRoll ?? 0) + (diceRollerObject.redDiceRoll ?? 0);
+    yellowRedNidurstada = DiceLogic.nidurstodur(diceRollerObject.yellowDiceRoll ?? 0, diceRollerObject.redDiceRoll ?? 0);
+    greenBlueNidurstada = DiceLogic.newDiceLogic(diceRollerObject.greendice ?? 0, diceRollerObject.bluedice ?? 0);
+    diceRollerObject.nidurstada = ('$yellowRedNidurstada $greenBlueNidurstada');
+  }
 
 
   @override
   Widget build(BuildContext context) {
+    /*
     final yellowRedSum = (diceRollerObject.yellowDiceRoll ?? 0) + (diceRollerObject.redDiceRoll ?? 0);
     String blueGreenResult = "";
 
@@ -75,9 +85,14 @@ class _DiceRollerState extends State<DiceRoller> {
       blueGreenResult = DiceLogic.newDiceLogic(diceRollerObject.bluedice ?? 0, diceRollerObject.greendice ?? 0);
     }
 
+
+     */
+    // TODO: move this to diceroll
     bool yellowRedDoubles = diceRollerObject.yellowDiceRoll != null && diceRollerObject.redDiceRoll != null && diceRollerObject.yellowDiceRoll == diceRollerObject.redDiceRoll;
     bool blueGreenDoubles = diceRollerObject.bluedice != null && diceRollerObject.greendice != null && diceRollerObject.bluedice == diceRollerObject.greendice;
     String doublesText = yellowRedDoubles ? (blueGreenDoubles ? "DOUBLE DOUBLES!" : "DOUBLES!") : "";
+
+
 
     return Container(
       margin: const EdgeInsets.all(10),
@@ -99,8 +114,10 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            diceRollerObject.yellowDiceRoll = ((diceRollerObject.yellowDiceRoll ?? 0) + 1).clamp(1, 6);
+                            diceRollerObject.yellowDiceRoll = updateDiceResult(1, diceRollerObject.yellowDiceRoll);
                           });
+                          getSumAndNidurstada();
+                          widget.updateParentState(diceRollerObject);
                         },
                         icon: const Icon(
                           Icons.arrow_drop_up,
@@ -111,8 +128,10 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            diceRollerObject.yellowDiceRoll = ((diceRollerObject.yellowDiceRoll ?? 0) - 1).clamp(1, 6);
+                            diceRollerObject.yellowDiceRoll = updateDiceResult(-1, diceRollerObject.yellowDiceRoll);
                           });
+                          getSumAndNidurstada();
+                          widget.updateParentState(diceRollerObject);
                         },
                         icon: const Icon(
                           Icons.arrow_drop_down,
@@ -138,8 +157,10 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            diceRollerObject.redDiceRoll = ((diceRollerObject.redDiceRoll ?? 0) + 1).clamp(1, 6);
+                            diceRollerObject.redDiceRoll = updateDiceResult(1, diceRollerObject.redDiceRoll);
                           });
+                          getSumAndNidurstada();
+                          widget.updateParentState(diceRollerObject);
                         },
                         icon: const Icon(
                           Icons.arrow_drop_up,
@@ -150,8 +171,10 @@ class _DiceRollerState extends State<DiceRoller> {
                       IconButton(
                         onPressed: () {
                           setState(() {
-                            diceRollerObject.redDiceRoll = ((diceRollerObject.redDiceRoll ?? 0) - 1).clamp(1, 6);
+                            diceRollerObject.redDiceRoll = updateDiceResult(-1, diceRollerObject.redDiceRoll);
                           });
+                          getSumAndNidurstada();
+                          widget.updateParentState(diceRollerObject);
                         },
                         icon: const Icon(
                           Icons.arrow_drop_down,
@@ -185,8 +208,10 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  diceRollerObject.greendice = ((diceRollerObject.greendice ?? 0) + 1).clamp(1, 6);
+                                  diceRollerObject.greendice = updateDiceResult(1, diceRollerObject.greendice);
                                 });
+                                getSumAndNidurstada();
+                                widget.updateParentState(diceRollerObject);
                               },
                               icon: const Icon(
                                 Icons.arrow_drop_up,
@@ -197,8 +222,10 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  diceRollerObject.greendice = ((diceRollerObject.greendice ?? 0) - 1).clamp(1, 6);
+                                  diceRollerObject.greendice = updateDiceResult(-1, diceRollerObject.greendice);
                                 });
+                                getSumAndNidurstada();
+                                widget.updateParentState(diceRollerObject);
                               },
                               icon: const Icon(
                                 Icons.arrow_drop_down,
@@ -224,8 +251,10 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  diceRollerObject.bluedice = ((diceRollerObject.bluedice ?? 0) + 1).clamp(1, 6);
+                                  diceRollerObject.bluedice = updateDiceResult(1, diceRollerObject.bluedice);
                                 });
+                                getSumAndNidurstada();
+                                widget.updateParentState(diceRollerObject);
                               },
                               icon: const Icon(
                                 Icons.arrow_drop_up,
@@ -236,8 +265,10 @@ class _DiceRollerState extends State<DiceRoller> {
                             IconButton(
                               onPressed: () {
                                 setState(() {
-                                  diceRollerObject.bluedice = ((diceRollerObject.bluedice ?? 0) - 1).clamp(1, 6);
+                                  diceRollerObject.bluedice = updateDiceResult(-1, diceRollerObject.bluedice);
                                 });
+                                getSumAndNidurstada();
+                                widget.updateParentState(diceRollerObject);
                               },
                               icon: const Icon(
                                 Icons.arrow_drop_down,
@@ -257,7 +288,7 @@ class _DiceRollerState extends State<DiceRoller> {
           const SizedBox(height: 1),
           Text(
             yellowRedSum == 2 || yellowRedSum == 12
-                ? '$yellowRedSum (${DiceLogic.nidurstodur(diceRollerObject.yellowDiceRoll ?? 0, diceRollerObject.redDiceRoll ?? 0)}) (${blueGreenResult})'
+                ? '$yellowRedSum (${DiceLogic.nidurstodur(diceRollerObject.yellowDiceRoll ?? 0, diceRollerObject.redDiceRoll ?? 0)}) (${greenBlueNidurstada})'
                 : '${yellowRedSum != 0 ? yellowRedSum : ''} ${diceRollerObject.yellowDiceRoll != null && diceRollerObject.redDiceRoll != null ? DiceLogic.nidurstodur(diceRollerObject.yellowDiceRoll ?? 0, diceRollerObject.redDiceRoll ?? 0) : ''}',
             style: const TextStyle(fontSize: 20, color: Colors.white60),
           ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../database/log_database.dart';
-import 'logview.dart';
 import '../database/log.dart';
 
 class LogDetailScreen extends StatelessWidget {
@@ -15,7 +13,8 @@ class LogDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log Details'),
+        title: Text('Kast $formattedDate'),
+        backgroundColor: Colors.orangeAccent,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -28,27 +27,59 @@ class LogDetailScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Nidurstada: ${log.nidurstada}',
+              'Rúllað var: ${log.nidurstada}',
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 10),
             Text(
-              'Kastari: ${log.kastari}',
+              'Gulur: ${log.yellowThrow}',
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 10),
             Text(
-              'Yellow Throw: ${log.yellowThrow}',
+              'Rauður: ${log.redThrow}',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+            if (log.greenThrow != null)
+              Text(
+                'Grænn: ${log.greenThrow}',
+                style: TextStyle(fontSize: 18),
+              ),
+            SizedBox(height: 10),
+            if (log.blueThrow != null)
+              Text(
+                'Blár: ${log.blueThrow}',
+                style: TextStyle(fontSize: 18),
+              ),
+            SizedBox(height: 10),
+            Text(
+              'Kastarinn var: ${log.kastari}',
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 10),
             Text(
-              'Red Throw: ${log.redThrow}',
+              'Bakendastofa: ${log.bakendiVitni}',
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 10),
             Text(
-              'Created Date: $formattedDate',
+              'Framendastofa: ${log.framendiVitni}',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Kassastofa: ${log.kassadeildVitni}',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Söludeild: ${log.soludeildVitni}',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Dagsetning: $formattedDate',
               style: TextStyle(fontSize: 18),
             ),
             // Add more Text widgets to display other log details if needed

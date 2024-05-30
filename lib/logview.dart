@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-
+import 'logdetails.dart';
 import '../database/log.dart';
 import '../database/log_database.dart';
 import 'package:flutter/material.dart';
@@ -42,26 +42,40 @@ class _LogListViewState extends State<LogListView> {
                   final log = logs[index];
                   final formattedDate =
                   DateFormat('dd-MM-yyyy').format(log.createdTime);
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(45),
-                      border: Border.all(color: Colors.white60, width: 2),
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        'Log ${log.id}: ${log.nidurstada}',
-                        style: TextStyle(fontSize: 18), // Adjust the font size here
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LogDetailScreen(log: log),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
+                      padding: EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        color: Colors.white60,
+                        borderRadius: BorderRadius.circular(45),
+                        border:
+                        Border.all(color: Colors.white60, width: 2),
                       ),
-                      subtitle: Text(
-                        'Kastari: ${log.kastari}\n'
-                            'Gulur: ${log.yellowThrow}, Rauður: ${log.redThrow}\n'
-                            'Dagur: $formattedDate',
-                        style: TextStyle(fontSize: 16), // Adjust the font size here
+                      child: ListTile(
+                        title: Text(
+                          'Log ${log.id}: ${log.nidurstada}',
+                          style: TextStyle(
+                              fontSize: 18), // Adjust the font size here
+                        ),
+                        subtitle: Text(
+                          'Kastari: ${log.kastari}\n'
+                              'Gulur: ${log.yellowThrow}, Rauður: ${log.redThrow}\n'
+                              'Dagur: $formattedDate',
+                          style: TextStyle(
+                              fontSize: 16), // Adjust the font size here
+                        ),
+                        isThreeLine: true,
                       ),
-                      isThreeLine: true,
                     ),
                   );
                 },
