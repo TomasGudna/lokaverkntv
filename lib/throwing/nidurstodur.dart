@@ -24,7 +24,7 @@ class DiceLogic {
         case 4: return "Brauð & Co";
         case 5: return "Sara kebab";
         case 6: return "KFC";
-        default: return "Kasta aftur";
+        default: return "";
       }
     } else {
       switch (blueRoll) {
@@ -34,7 +34,7 @@ class DiceLogic {
         case 4: return "Metro";
         case 5: return "JWI";
         case 6: return "Salatbarinn";
-        default: return "Kasta aftur";
+        default: return "";
       }
     }
   }

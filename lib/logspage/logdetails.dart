@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../database/log.dart';
+import 'package:flutter/services.dart';
 
 class LogDetailScreen extends StatelessWidget {
   final Log log;
@@ -10,6 +11,26 @@ class LogDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formattedDate = DateFormat('dd-MM-yyyy').format(log.createdTime);
+
+
+    String formatLog(Log log) {
+      String greenThrowLine = log.greenThrow != null ? 'Grænn: ${log.greenThrow}' : '';
+      String blueThrowLine = log.blueThrow != null ? 'Blár: ${log.blueThrow}' : '';
+
+      return '''
+Rúllað var: ${log.nidurstada}
+Gulur: ${log.yellowThrow}
+Rauður: ${log.redThrow}
+${greenThrowLine.isNotEmpty ? greenThrowLine + '\n' : ''}${blueThrowLine.isNotEmpty ? blueThrowLine + '\n' : ''}Kastarinn var: ${log.kastari}
+Vitni fyrir hverja skrifstofu:
+• Bakendastofa - ${log.bakendiVitni}
+• Framendastofa - ${log.framendiVitni}
+• Kassastofa - ${log.kassadeildVitni}
+• Söludeild - ${log.soludeildVitni}
+''';
+    }
+
+    final formattedLog = formatLog(log);
 
     return Scaffold(
       appBar: AppBar(
@@ -81,6 +102,22 @@ class LogDetailScreen extends StatelessWidget {
             Text(
               'Dagsetning: $formattedDate',
               style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 20),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Clipboard.setData(ClipboardData(text: formattedLog));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Texti vistaður')),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blueAccent,
+                ),
+                child: Text('Vista texta'),
+              ),
             ),
           ],
         ),

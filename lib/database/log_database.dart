@@ -16,7 +16,7 @@ class LogDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('test11.db');
+    _database = await _initDB('database.db');
     return _database!;
   }
 
@@ -28,7 +28,6 @@ class LogDatabase {
   }
 
   Future _createDB(Database db, int version) async {
-    print("wow");
     await db.execute('''
         CREATE TABLE $tableLogs (
         ${LogFieldsThrows.id} INTEGER PRIMARY KEY AUTOINCREMENT,
