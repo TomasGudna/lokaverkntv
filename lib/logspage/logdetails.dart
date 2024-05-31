@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../database/log.dart';
+import '../../database/log.dart';
 
 class LogDetailScreen extends StatelessWidget {
   final Log log;
@@ -82,7 +82,6 @@ class LogDetailScreen extends StatelessWidget {
               'Dagsetning: $formattedDate',
               style: TextStyle(fontSize: 18),
             ),
-            // Add more Text widgets to display other log details if needed
           ],
         ),
       ),

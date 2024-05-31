@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lokaverk/classes/classes.dart';
 import 'vitni_takki.dart';
-import '../database/log.dart';
-import '../database/log_database.dart';
-
 
 
 class Vitni extends StatefulWidget {
@@ -93,7 +90,8 @@ class _VitniState extends State<Vitni> {
   }
 
   void _showAllOptions(BuildContext context) {
-    List<String> allNames = _getAllNames().where((name) => name != 'HERESY').toList();
+    List<String> allNames =
+        _getAllNames().where((name) => name != 'HERESY').toList();
     showDialog(
       context: context,
       builder: (BuildContext context) {

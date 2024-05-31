@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:lokaverk/database/log.dart';
@@ -51,7 +49,7 @@ class LogDatabase {
 
   Future<Log> create(Log log) async {
     final db = await instance.database;
-    //print(log.toJson());
+
     final id = await db.insert(tableLogs, log.toJson());
     return log.copy(id: id);
   }
@@ -78,10 +76,7 @@ class LogDatabase {
 
     final orderBy = '${LogFieldsThrows.time} DESC';
     final result = await db.query(tableLogs, orderBy: orderBy);
-    // tok ut þetta eftir table logs columns: LogFields.values,
-    //final test = result.map((json) => Log.fromJson(json)).toList();
-    //print(test.length);
-    //print(test);
+
     return result.map((json) => Log.fromJson(json)).toList();
   }
 

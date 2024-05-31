@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 import 'logdetails.dart';
-import '../database/log.dart';
-import '../database/log_database.dart';
+import '../../database/log.dart';
+import '../../database/log_database.dart';
 import 'package:flutter/material.dart';
 
 class LogListView extends StatefulWidget {
@@ -65,14 +65,14 @@ class _LogListViewState extends State<LogListView> {
                         title: Text(
                           'Log ${log.id}: ${log.nidurstada}',
                           style: TextStyle(
-                              fontSize: 18), // Adjust the font size here
+                              fontSize: 18),
                         ),
                         subtitle: Text(
                           'Kastari: ${log.kastari}\n'
                               'Gulur: ${log.yellowThrow}, Rauður: ${log.redThrow}\n'
-                              'Dagur: $formattedDate',
+                              'Dagsetning: $formattedDate',
                           style: TextStyle(
-                              fontSize: 16), // Adjust the font size here
+                              fontSize: 16),
                         ),
                         isThreeLine: true,
                       ),

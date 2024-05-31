@@ -45,8 +45,10 @@ class _SaveState extends State<Save> {
   }
 
   Future<void> saveLog(BuildContext context) async {
-
-    if (yellowThrow != null && redThrow != null && kastari != null &&  nidurstada != null) {
+    if (yellowThrow != null &&
+        redThrow != null &&
+        kastari != null &&
+        nidurstada != null) {
       final log = Log(
         yellowThrow: yellowThrow!,
         redThrow: redThrow!,

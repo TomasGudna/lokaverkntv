@@ -1,8 +1,5 @@
-
 import 'log_vitni.dart';
 import 'log_throw.dart';
-import 'log_field.dart';
-import 'package:intl/intl.dart';
 
 class Log {
   final int? id;
@@ -18,7 +15,7 @@ class Log {
   final String nidurstada;
   final DateTime createdTime;
 
-   Log({
+  Log({
     this.id,
     required this.yellowThrow,
     required this.redThrow,
@@ -63,33 +60,32 @@ class Log {
       );
 
   static Log fromJson(Map<String, Object?> json) => Log(
-    id: json[LogFieldsThrows.id] as int?,
-    yellowThrow: json[LogFieldsThrows.yellowThrow] as int,
-    redThrow: json[LogFieldsThrows.redThrow] as int,
-    greenThrow: json[LogFieldsThrows.greenThrow] as int?,
-    blueThrow: json[LogFieldsThrows.blueThrow] as int?,
-    kastari: json[LogFieldsPerson.kastari] as String,
-    framendiVitni: json[LogFieldsPerson.framendiVitni] as String,
-    bakendiVitni: json[LogFieldsPerson.bakendiVitni] as String,
-    kassadeildVitni: json[LogFieldsPerson.kassadeildVitni] as String,
-    soludeildVitni: json[LogFieldsPerson.soludeildVitni] as String,
-    nidurstada: json[LogFieldsThrows.nidurstada] as String,
-    createdTime: DateTime.parse(json[LogFieldsThrows.time] as String),
-  );
+        id: json[LogFieldsThrows.id] as int?,
+        yellowThrow: json[LogFieldsThrows.yellowThrow] as int,
+        redThrow: json[LogFieldsThrows.redThrow] as int,
+        greenThrow: json[LogFieldsThrows.greenThrow] as int?,
+        blueThrow: json[LogFieldsThrows.blueThrow] as int?,
+        kastari: json[LogFieldsPerson.kastari] as String,
+        framendiVitni: json[LogFieldsPerson.framendiVitni] as String,
+        bakendiVitni: json[LogFieldsPerson.bakendiVitni] as String,
+        kassadeildVitni: json[LogFieldsPerson.kassadeildVitni] as String,
+        soludeildVitni: json[LogFieldsPerson.soludeildVitni] as String,
+        nidurstada: json[LogFieldsThrows.nidurstada] as String,
+        createdTime: DateTime.parse(json[LogFieldsThrows.time] as String),
+      );
 
   Map<String, Object?> toJson() => {
-    LogFieldsThrows.id: id,
-    LogFieldsThrows.yellowThrow: yellowThrow,
-    LogFieldsThrows.redThrow: redThrow,
-    LogFieldsThrows.greenThrow: greenThrow,
-    LogFieldsThrows.blueThrow: blueThrow,
-    LogFieldsPerson.kastari: kastari,
-    LogFieldsPerson.framendiVitni: framendiVitni,
-    LogFieldsPerson.bakendiVitni: bakendiVitni,
-    LogFieldsPerson.kassadeildVitni: kassadeildVitni,
-    LogFieldsPerson.soludeildVitni: soludeildVitni,
-    LogFieldsThrows.nidurstada: nidurstada,
-    LogFieldsThrows.time: createdTime.toIso8601String(),
-  };
+        LogFieldsThrows.id: id,
+        LogFieldsThrows.yellowThrow: yellowThrow,
+        LogFieldsThrows.redThrow: redThrow,
+        LogFieldsThrows.greenThrow: greenThrow,
+        LogFieldsThrows.blueThrow: blueThrow,
+        LogFieldsPerson.kastari: kastari,
+        LogFieldsPerson.framendiVitni: framendiVitni,
+        LogFieldsPerson.bakendiVitni: bakendiVitni,
+        LogFieldsPerson.kassadeildVitni: kassadeildVitni,
+        LogFieldsPerson.soludeildVitni: soludeildVitni,
+        LogFieldsThrows.nidurstada: nidurstada,
+        LogFieldsThrows.time: createdTime.toIso8601String(),
+      };
 }
-

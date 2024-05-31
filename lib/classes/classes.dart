@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class DiceRollerObject {
   int? yellowDiceRoll;
   int? redDiceRoll;
