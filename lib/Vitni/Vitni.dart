@@ -147,9 +147,9 @@ class _VitniState extends State<Vitni> {
   }
 
   final Map<String, List<String>> buttonOptions = {
-    'Bakendi': ['Arnar', 'Þröstur', 'Engilbert', 'HERESY'],
-    'Framendi': ['Grímur', 'Marzúk', 'Fannar', 'HERESY'],
-    'Kassadeild': ['Tómas', 'Þór', 'Kormákur', 'Sveinn', 'HERESY'],
+    'Bakendi': ['Arnar', 'Þröstur', 'Hans', 'Engilbert', 'HERESY'],
+    'Framendi': ['Grímur', 'Marzúk', 'Fannar', 'Róman' 'HERESY'],
+    'Kassadeild': ['Tómas', 'Þór', 'Lísa', 'Sveinn', 'HERESY'],
     'Söludeild': ['Sara', 'Federica', 'Gunnar', 'HERESY'],
   };
 
